@@ -1,4 +1,4 @@
-package data;
+package create;
 
 public class User {
     private String name;

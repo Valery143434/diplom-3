@@ -1,16 +1,19 @@
+import login.Authorization;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.*;
-import data.*;
+import create.*;
 import pom.*;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
+import requests.sendsRequests;
+
 import java.time.Duration;
 
 public class GoodRegistrationTest {
     private WebDriver driver;
     private User user;
-    private UserClient userClient;
+    private sendsRequests userClient;
     private String accessToken;
     private Authorization authorization;
     @Before
@@ -24,19 +27,19 @@ public class GoodRegistrationTest {
     @DisplayName("успешная регистрация")
     public void goodRegistrationTest() {
         ForRegistration registrationPage = new ForRegistration(driver);
-        registrationPage.openRegisterPage().registrationUser(user).clickRegistrationButton()
+        registrationPage.openRegisterPage().sendDataInRegistrationFormOnRegistrationPage(user).clickRegistrationButtonOnRegistrationPage()
                 .fillingLoginForm(user.getEmail(), user.getPassword()).clickLoginButton();
         ForMain mainPage = new ForMain(driver);
-        Assert.assertTrue(mainPage.mainPageOpen());
+        Assert.assertTrue(mainPage.orderButtonOnMainPage());
     }
     @After
     @DisplayName("удаляем пользователя и закрываем браузер")
     public void delete() {
-        userClient = new UserClient();
+        userClient = new sendsRequests();
         authorization = new Authorization(user.getEmail(), user.getPassword());
-        ValidatableResponse responseLoginUser = userClient.loginUser(authorization);
+        ValidatableResponse responseLoginUser = userClient.loginUserRequest(authorization);
         accessToken = responseLoginUser.extract().path("accessToken").toString().substring(7);
-        userClient.deleteUser(accessToken);
+        userClient.deleteUserRequest(accessToken);
         driver.quit();
     }
 

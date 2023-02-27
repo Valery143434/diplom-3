@@ -1,4 +1,7 @@
-package data;
+package login;
+
+import create.User;
+
 public class Authorization {
     private String email;
     private String password;

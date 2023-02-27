@@ -25,7 +25,7 @@ public class ConstructorTest {
         Assert.assertEquals("Соусы", mainPage.getTextFromSelectedMenu());
     }
     @Test
-    @DisplayName("Проверка переход к разделу «Булочки)»")
+    @DisplayName("Проверка переход к разделу «Булки»")
     public void menuBunIsActiveByClick() {
         mainPage.openMainPage()
                 .clickMenuSauce()

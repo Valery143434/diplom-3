@@ -5,7 +5,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pom.*;
 import java.time.Duration;
-import static data.URL.*;
+import static url.URL.*;
 
 public class PageTransitionTest extends ForTest {
     @Test
@@ -13,7 +13,7 @@ public class PageTransitionTest extends ForTest {
     public void goInProfileThroughProfileButtonTest() {
         ForMain mainPage = new ForMain(driver);
         mainPage.openMainPage();
-        mainPage.clickProfile();
+        mainPage.clickOnEnterInAccountOnMainButtonWhenUserNotLogin();
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(LOGIN_PAGE));
         Assert.assertEquals(LOGIN_PAGE, driver.getCurrentUrl());
     }
@@ -21,9 +21,9 @@ public class PageTransitionTest extends ForTest {
     @DisplayName("переход из личного кабинета в конструктор по клику на «Конструктор»")
     public void goFromProfileInConstructorTest() {
         ForMain mainPage = new ForMain(driver);
-        mainPage.openMainPage().clickProfile()
+        mainPage.openMainPage().clickProfileButtonOnMainPageWhenUserNotLogin()
                 .fillingLoginForm(user.getEmail(), user.getPassword())
-                .clickLoginButton().clickProfileWhenUserLogin().clickConstructorButton();
+                .clickLoginButton().clickProfileButtonOnMainPageWhenUserLogin().clickConstructorButton();
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(BASE_URL));
         Assert.assertEquals(BASE_URL, driver.getCurrentUrl());
     }
@@ -31,9 +31,9 @@ public class PageTransitionTest extends ForTest {
     @DisplayName("переход из личного кабинета в конструктор по клику на логотип Stellar Burgers")
     public void goFromProfileInConstructorThroughLogoTest() {
         ForMain mainPage = new ForMain(driver);
-        mainPage.openMainPage().clickProfile()
+        mainPage.openMainPage().clickProfileButtonOnMainPageWhenUserNotLogin()
                 .fillingLoginForm(user.getEmail(), user.getPassword())
-                .clickLoginButton().clickProfileWhenUserLogin().clickOnLogo();
+                .clickLoginButton().clickProfileButtonOnMainPageWhenUserLogin().clickOnLogoButton();
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.urlToBe(BASE_URL));
         Assert.assertEquals(BASE_URL, driver.getCurrentUrl());
     }

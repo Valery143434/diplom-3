@@ -3,7 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.qameta.allure.junit4.DisplayName;
 import java.time.Duration;
-import data.*;
+import create.*;
 import pom.*;
 import static pom.ForRegistration.*;
 
@@ -26,7 +26,7 @@ public class BadRegistrationTest {
                 .enterName(user.getName())
                 .enterEmail(user.getEmail())
                 .enterPassword("0")
-                .clickRegistrationButton();
+                .clickRegistrationButtonOnRegistrationPage();
         Assert.assertEquals("Ошибка не появилась", "Некорректный пароль",
                 driver.findElement(badPasswordMassage).getText());
     }

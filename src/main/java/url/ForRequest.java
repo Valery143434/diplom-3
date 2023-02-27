@@ -1,10 +1,10 @@
-package data;
+package url;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import static data.URL.BASE_URL;
+import static url.URL.BASE_URL;
 
-public class ForUser {
+public class ForRequest {
     public RequestSpecification forRQ() {
         return new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)

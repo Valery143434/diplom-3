@@ -1,5 +1,6 @@
 package pom;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -14,17 +15,20 @@ public class ForProfile {
         this.driver = driver;
     }
 
+    @Step("клик по кнопке 'Конструктор'")
     public ForMain clickConstructorButton() {
         driver.findElement(constructorButton).click();
         return new ForMain(driver);
     }
 
-    public ForMain clickOnLogo() {
+    @Step("клик по логотипу 'Stellar Burgers'")
+    public ForMain clickOnLogoButton() {
         driver.findElement(logoButton).click();
         return new ForMain(driver);
     }
 
-    public ForLogin logout() {
+    @Step("клик по кнопке 'выход'")
+    public ForLogin clickLogoutButton() {
         driver.findElement(logoutButton).click();
         return new ForLogin(driver);
     }

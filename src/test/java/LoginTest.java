@@ -8,26 +8,26 @@ public class LoginTest extends ForTest {
     @DisplayName("вход по кнопке «Войти в аккаунт» на главной")
     public void loginFromMainPageTest() {
         ForMain mainPage = new ForMain(driver);
-        mainPage.openMainPage().clickAccountButton()
+        mainPage.openMainPage().clickOnEnterInAccountOnMainButtonWhenUserNotLogin()
                 .fillingLoginForm(user.getEmail(), user.getPassword()).clickLoginButton();
-        Assert.assertTrue(mainPage.mainPageOpen());
+        Assert.assertTrue(mainPage.orderButtonOnMainPage());
     }
     @Test
     @DisplayName("вход через кнопку «Личный кабинет»")
     public void loginFromProfilePageTest() {
         ForMain mainPage = new ForMain(driver);
-        mainPage.openMainPage().clickProfile()
+        mainPage.openMainPage().clickOnEnterInAccountOnMainButtonWhenUserNotLogin()
                 .fillingLoginForm(user.getEmail(), user.getPassword()).clickLoginButton();
-        Assert.assertTrue(mainPage.mainPageOpen());
+        Assert.assertTrue(mainPage.orderButtonOnMainPage());
     }
     @Test
     @DisplayName("вход через кнопку в форме регистрации,")
     public void loginFromRegistrationPageTest() {
         ForRegistration registrationPage = new ForRegistration(driver);
-        registrationPage.openRegisterPage().clickRegistrationButtonOnRegistrationPage()
+        registrationPage.openRegisterPage().clickEnterButtonOnRegistrationPage()
                 .fillingLoginForm(user.getEmail(), user.getPassword()).clickLoginButton();
         ForMain mainPage = new ForMain(driver);
-        Assert.assertTrue(mainPage.mainPageOpen());
+        Assert.assertTrue(mainPage.orderButtonOnMainPage());
     }
     @Test
     @DisplayName("вход через кнопку в форме восстановления пароля")
@@ -36,6 +36,6 @@ public class LoginTest extends ForTest {
         passwordRecoverPage.openRecoveryPage().clickEnterButtonOnRecoveryPage()
                 .fillingLoginForm(user.getEmail(), user.getPassword()).clickLoginButton();
         ForMain mainPage = new ForMain(driver);
-        Assert.assertTrue(mainPage.mainPageOpen());
+        Assert.assertTrue(mainPage.orderButtonOnMainPage());
     }
 }
